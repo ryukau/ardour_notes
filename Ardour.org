@@ -1,0 +1,369 @@
+#+TITLE: Ardourクイックスタート
+#+OPTIONS: html-postamble:nil
+
+[[https://ardour.org/][Ardour]]はGPLv2で配布されているレコーディングに重点を置いたDAWです。
+
+ここではArdourでよく使いそうな操作手順をまとめています。
+
+** インストール
+dnfからインストールできます。とりあえず[[http://yoshimi.sourceforge.net/][Yoshimi]]、[[http://calf-studio-gear.org/][Calf Plug-ins]]、[[https://amsynth.github.io/][amsynth]]をインストールしておきます。
+
+#+BEGIN_SRC bash
+sudo dnf install ardour5 yoshimi lv2-calf-plugins lv2-amsynth-plugin
+#+END_SRC
+
+[[http://manual.ardour.org/working-with-plugins/][プラグイン]]については主に[[http://www.ladspa.org/][LADSPA]]と[[http://lv2plug.in/][LV2]]が利用できます。Fedora 26の公式リポジトリでいくつか配布されているのでdnf searchで探してみてください。
+
+#+BEGIN_SRC bash
+sudo dnf search lv2
+sudo dnf search ladspa
+#+END_SRC
+
+初回起動時に表示されるWelcome to Ardourでの設定はデフォルトのままで問題ありません。
+
+Ardourを起動するとSession Setupが開くのでNew Sessionからセッションを作って起動します。
+
+*** JACKのリアルタイムスケジューリング
+セッションを開いた時に以下の警告が出て起動に失敗することがあります。
+
+#+BEGIN_EXAMPLE
+WARNING: Your system has a limit for maximum amount of locked memory. This might cause Ardour to run out of memory before your system runs out of memory.
+
+You can view the memory limit with 'ulimit -l', and it is normally controlled by  /etc/security/limits.conf
+#+END_EXAMPLE
+
+この問題はリアルタイムスケジューリングを設定することで解決します。以下はFedora 26で必要な設定です。
+
+リアルタイムスケジューリングの設定ファイルを作成して開きます。
+
+#+BEGIN_SRC bash
+sudo nano /etc/security/limits.d/99-realtime.conf
+#+END_SRC
+
+99-realtime.confに以下の内容を追加します。
+
+#+BEGIN_SRC
+@realtime   -  rtprio     99
+@realtime   -  memlock    unlimited
+#+END_SRC
+
+リアルタイムスケジューリングを適用するrealtimeグループを作ってユーザを追加します。
+
+#+BEGIN_SRC bash
+sudo groupadd realtime
+sudo gpasswd -a cu realtime
+#+END_SRC
+
+realtimeグループからユーザを除外するときは =gpasswd -d= が使えます。
+
+#+BEGIN_SRC bash
+sudo gpasswd -d cu realtime
+#+END_SRC
+
+- [[http://www.jackaudio.org/faq/linux_rt_config.html][JACK Audio Connection Kit|How do I configure my linux system to allow JACK to use realtime scheduling?]]
+- [[https://unix.stackexchange.com/questions/29570/how-do-i-remove-a-user-from-a-group][How do I remove a user from a group? - Unix & Linux Stack Exchange]]
+
+** 動画チュートリアルとマニュアル
+JHoermann // Linux audio productionさんの動画チュートリアルがまとまっています。
+
+- [[https://www.youtube.com/watch?v=arvPwZlU1ak][Recording on Linux - with Ardour 5 | Tutorials]]
+- [[https://www.youtube.com/watch?v=9jclRW6ByGo][Audio Plugins on Linux - with Ardour 5 | Tutorials]]
+
+よくわからない機能があれば機能名をコピーして[[http://manual.ardour.org/toc/][The Ardour Manual]]のサイドバーにある検索窓から調べることができます。
+
+- UIで迷ったら[[http://manual.ardour.org/ardours-interface/about/][Ardour's Interface Overview]]
+- 基本的な再生と停止の操作方法は[[http://manual.ardour.org/playback-recording/playing-back-track-material/][Playing Back Track Material]]
+- ショートカットは[[http://manual.ardour.org/introduction-to-ardour/keyboard-and-mouse-shortcuts/][Keyboard and Mouse Shortcuts]]
+
+** ワークフロー
+*** セッションの開始
+新しい[[http://manual.ardour.org/working-with-sessions/whats-in-a-session/][セッション]]を作ります。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_new_session.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** EditorとMixer画面の切り替え
+Alt+Mでも画面の切り替えができます。EditorとMixerのボタンを右クリックするとメニューが表示されて別ウィンドウとして表示(Detach)もできます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_editor_mixer.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** MIDIトラックの追加
+[[http://manual.ardour.org/midi/][MIDI]]トラックを追加します。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_add_midi_track.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+次の動画では鍵盤の音域を変更します。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_midi_track_keyboard.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** プラグインのGUIを表示
+[[http://manual.ardour.org/working-with-plugins/][プラグイン]]側で用意されたGUIの他に、Ardourの[[http://manual.ardour.org/working-with-plugins/working-with-ardour-built-plugin-editors/][Generic Plugin Editor]]も使うことができます。
+
+動画ではメニューからGUIを表示していますが、プラグインをダブルクリックでもGUIを表示できます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_plugin_gui.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** MIDIノートの入力
+まずは[[http://manual.ardour.org/ardours-interface/the-toolbox/][Draw Mode]]で[[http://manual.ardour.org/working-with-midi/create-midi-regions/][MIDI Regionを作ります]]。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_midi_region.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+[[http://manual.ardour.org/working-with-midi/add-new-notes/][MIDIノートの入力]]はDraw Mode (D)、範囲選択はInternal Edit Mode (E)で行います。
+
+[[http://manual.ardour.org/ardours-interface/the-grid-controls/][Grid Controls]]でスナップの設定ができます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_midi_note_draw.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+Draw Modeでは以下のショートカットが使えます。
+
+- Shift+右クリックで削除
+- Ctrl+左クリックで一つずつ選択
+- Ctrl+左ドラッグで選択した要素をコピー
+
+Stretch Mode (T)を使えばRegion単位で長さを伸縮できます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_midi_note_stretch.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** テンポの変更
+[[http://manual.ardour.org/ardours-interface/using-ardour-clock-displays/][Transport Clocks]]からテンポを変更できます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_tempo.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** ループ再生
+[[http://manual.ardour.org/ardours-interface/the-ruler/][Ruler]]のLoop Rangeは、Regionを選択してショートカットのLで設定することもできます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_loop_region.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** MixerでAuxセンド
+[[http://manual.ardour.org/working-with-tracks/bus-controls/][Bus]]を追加して[[http://manual.ardour.org/signal-routing/aux-sends/][Auxセンド]]を使います。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_audio_bus_send.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** プラグインの追加
+[[http://manual.ardour.org/ardours-interface/audio-midi-mixer-strips/][Mixer Strip]]にプラグインを追加します。プラグインはドラッグで順番を変更できます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_add_FX_plugin.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** オートメーション
+横向きのスライダとして表示されるパラメータは[[http://manual.ardour.org/automation/][オートメーション]]ができます。[[http://manual.ardour.org/mixing/automation/automation-modes/][Automation Mode]]をWriteかTouchに設定した上で、録音を開始してフェーダを動かすことでオートメーションを記録できます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_automation_mixer.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+オートメーションを行うパラメータはEditorから選択することもできます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_automation_editor.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** フリーズ
+Ardourでは今のところMIDIトラックのプラグイン出力を直接フリーズできる機能は無いようです。
+
+以下のスクリーンキャストではAudioトラックを用意して録音しています。[[http://manual.ardour.org/signal-routing/Patchbay/][パッチベイ]]の表示は右クリックで行っていますが、左クリック -> Routing Gridでも同じ画面が表示されます。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_midi_freeze.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+** スクリプティング
+Ardourでは[[http://www.lua.org/home.html][Lua]]を使ってスクリプトを書くことができます。Luaの文法については[[http://www.lua.org/pil/contents.html][Programming in Lua (first edition)]]が参考になります。スクリプティングに関する資料としては[[http://manual.ardour.org/lua-scripting/class_reference/][マニュアルのリファレンス]]や[[https://github.com/Ardour/ardour/tree/master/scripts][ソースコードに含まれている例]]があります。
+
+*** Minimal Example
+まずは[[http://manual.ardour.org/lua-scripting/][The Ardour Manual - Lua Scripting]]のScript Layoutにあるminimal exampleを試します。以下の内容を~/.config/ardour5/scripts/rewind.luaに保存します。
+
+#+BEGIN_SRC lua
+ardour {
+	["type"]    = "EditorAction",
+	name        = "Rewind",
+}
+
+function factory (unused_params)
+	return function ()
+		Session:goto_start()  -- rewind the transport
+	end
+end
+#+END_SRC
+
+Ardourを開いて上のメニューからEdit -> Lua Scripts -> Script Managerを選択します。Script Managerが開いたらAction ScriptsにRewindをセットします。Callで実行してプレイヘッドが曲の最初に戻れば成功です。
+
+以下の動画ではCallのかわりにEdit -> Runで実行しています。Editで開くエディタはスクリプトの出力が表示されるのでデバッグのときに便利です。
+
+#+ATTR_HTML: :controls controls :width 800
+#+BEGIN_video
+#+HTML: <source src="./video/ardour_lua_script_action.mp4" type="video/mp4">
+Your browser does not support the video tag.
+#+END_video
+
+*** MIDI Regionの変更
+MIDIノートのベロシティをランダマイズするスクリプトです。
+
+#+BEGIN_SRC lua
+ardour {
+	["type"]    = "EditorAction",
+	name        = "Randomize Velocity",
+	license     = "MIT",
+	author      = "Uhhyou",
+	description = [[Randomize midi notes velocity in selected region.]]
+}
+
+function factory() return function ()
+	math.randomseed(os.time())
+
+	-- selection中のMidiRegionだけで処理を行う。
+	local selection = Editor:get_selection()
+	for regions in selection.regions:regionlist():iter() do
+		local midi_region = regions:to_midiregion()
+		if not midi_region:isnil() then
+			local model = midi_region:model()
+
+			-- アンドゥ履歴で表示されるコマンド名を指定する。
+			local midi_command = model:new_note_diff_command("RandomizeVelocity")
+
+			local note_list = ARDOUR.LuaAPI.note_list(model)
+			for note in note_list:iter () do
+				-- NotePtrからMIDIノートを書き換えることはできないようなので
+				-- 古いノートを消して新しいノートを加えている。
+				local new_note = ARDOUR.LuaAPI.new_noteptr(
+					note:channel(),
+					note:time(),
+					note:length(),
+					note:note(),
+					math.random(15, 127)
+				)
+				midi_command:add(new_note)
+				midi_command:remove(note)
+			end
+
+			model:apply_command(Session, midi_command)
+		end
+	end
+end end
+#+END_SRC
+
+ベロシティ以外もランダマイズするように変更します。
+
+#+BEGIN_SRC lua
+function factory() return function ()
+	function clamp(value, min, max)
+		return math.max(min, math.min(value, max))
+	end
+
+	math.randomseed(os.time())
+	local chord = {0, 2, 4, 5, 7, 9}
+
+	local selection = Editor:get_selection()
+	for region in selection.regions:regionlist():iter() do
+		local midi_region = region:to_midiregion()
+		if not midi_region:isnil() then
+			local model = midi_region:model()
+			local midi_command = model:new_note_diff_command("RandomizeNote")
+			local note_list = ARDOUR.LuaAPI.note_list(model)
+			for note in note_list:iter () do
+				local new_note = ARDOUR.LuaAPI.new_noteptr(
+					note:channel(),
+					Evoral.Beats(note:time():to_double() + math.random() / 4.0),
+					Evoral.Beats(
+						note:length():to_double()* (1.5 + math.random()) / 2.0),
+					clamp(note:note() + chord[math.random(#chord)], 0, 127),
+					math.random(15, 127)
+				)
+				midi_command:add(new_note)
+				midi_command:remove(note)
+			end
+
+			model:apply_command(Session, midi_command)
+		end
+	end
+end end
+#+END_SRC
+
+関数を書くときは、他のスクリプトの関数名との衝突を避けるために =function factory() return function () ... end end= の中に入れます。関数名が衝突した場合はスクリプトが実行できないことがあります。
+
+**** 利用クラス
+
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ArdourUI:Editor][ArdourUI:Editor]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ArdourUI:Selection][ArdourUI:Selection]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ArdourUI:RegionSelection][ArdourUI:RegionSelection]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ARDOUR:RegionList][ARDOUR:RegionList]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ARDOUR:Region][ARDOUR:Region]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ARDOUR:MidiRegion][ARDOUR:MidiRegion]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ARDOUR:MidiModel][ARDOUR:MidiModel]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ARDOUR:MidiModel:NoteDiffCommand][ARDOUR:MidiModel:NoteDiffCommand]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ARDOUR:LuaAPI][ARDOUR.LuaAPI]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#ARDOUR:NotePtrList][ARDOUR:NotePtrList]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#Evoral:NotePtr][Evoral:NotePtr]]
+- [[http://manual.ardour.org/lua-scripting/class_reference/#Evoral:Beats][Evoral:Beats]]
+
+**** 参考スクリプト
+
+- [[https://github.com/Ardour/ardour/blob/master/scripts/_dump_midiregion.lua][ardour/_dump_midiregion.lua at master · Ardour/ardour · GitHub]]
+- [[https://github.com/Ardour/ardour/blob/master/scripts/vamp_audio_to_midi.lua][ardour/vamp_audio_to_midi.lua at master · Ardour/ardour · GitHub]]
+
+今回のスクリプトでは使っていませんが、ダイアログの表示もできます。
+
+- [[https://github.com/Ardour/ardour/blob/master/scripts/_dialog_test.lua][ardour/_dialog_test.lua at master · Ardour/ardour · GitHub]]
+
+[[https://www.youtube.com/watch?v=fiShX2pTz9A][Pong]]もあります。
+
+- [[https://github.com/Ardour/ardour/blob/master/scripts/_pong.lua][ardour/_pong.lua at master · Ardour/ardour · GitHub]]
+
+**** 参考サイト
+
+- [[http://www.lua.org/pil/contents.html][Programming in Lua (first edition)]]
+- [[http://lua-users.org/wiki/MathLibraryTutorial][lua-users wiki: Math Library Tutorial]]
+- [[https://stackoverflow.com/questions/2988246/lua-choose-random-item-from-table][Lua choose random item from table - Stack Overflow]]
+- [[http://manual.ardour.org/lua-scripting/][The Ardour Manual - Lua Scripting]]

@@ -5,7 +5,7 @@
 
 [[https://ardour.org/][Ardour]]は[[https://www.gnu.org/philosophy/free-sw.ja.html][自由]]でオープンなソフトウェア([[https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html][GPLv2]])として配布されていることが特徴のDAWです。
 
-この文章では[[https://getfedora.org/ja/][Fedora]]26にArdour5をインストールして、基本的な操作手順を紹介します。
+この文章では[[https://getfedora.org/ja/][Fedora]]26にArdour5をインストールして、基本的な使い方を紹介します。
 
 ** インストール
 Fedora26の場合はdnfからインストールできます。

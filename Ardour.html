@@ -1,183 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-08-20 Sun 10:00 -->
+<!-- 2017-08-22 Tue 21:22 -->
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ardourクイックスタート</title>
 <meta name="generator" content="Org mode">
 <style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  #content {
-    max-width: 800px;
-    min-width: 512px;
-    margin: 0 auto;
-  }
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: 1px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
+<!--/*--><![CDATA[/*><!--*/
+#content {
+  max-width: 800px;
+  min-width: 512px;
+  margin: 0 auto;
+}
 
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+.title {
+  text-align: center;
+  margin-bottom: .2em;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.todo {
+  font-family: monospace;
+  color: red;
+}
+
+.done {
+  font-family: monospace;
+  color: green;
+}
+
+.priority {
+  font-family: monospace;
+  color: orange;
+}
+
+.tag {
+  background-color: #eee;
+  font-family: monospace;
+  padding: 2px;
+  font-size: 80%;
+  font-weight: normal;
+}
+
+.timestamp {
+  color: #bebebe;
+}
+
+.timestamp-kwd {
+  color: #5f9ea0;
+}
+
+.org-right {
+  margin-left: auto;
+  margin-right: 0px;
+  text-align: right;
+}
+
+.org-left {
+  margin-left: 0px;
+  margin-right: auto;
+  text-align: left;
+}
+
+.org-center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+#postamble p,
+#preamble p {
+  font-size: 90%;
+  margin: .2em;
+}
+
+p.verse {
+  margin-left: 3%;
+}
+
+pre {
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 3px #eee;
+  padding: 8pt;
+  font-family: monospace;
+  overflow: auto;
+  margin: 1.2em;
+}
+
+pre.src {
+  position: relative;
+  padding-top: 1.2em;
+}
+
+pre.src:before {
+  display: none;
+  position: absolute;
+  background-color: white;
+  top: 1px;
+  right: 10px;
+  padding: 3px;
+  border: 1px solid black;
+}
+
+pre.src:hover:before {
+  display: inline;
+}
+/* Languages per Org manual */
+
+pre.src-asymptote:before {
+  content: 'Asymptote';
+}
+
+pre.src-awk:before {
+  content: 'Awk';
+}
+
+pre.src-C:before {
+  content: 'C';
+}
+/* pre.src-C++ doesn't work in CSS */
+
+pre.src-clojure:before {
+  content: 'Clojure';
+}
+
+pre.src-css:before {
+  content: 'CSS';
+}
+
+pre.src-D:before {
+  content: 'D';
+}
+
+pre.src-ditaa:before {
+  content: 'ditaa';
+}
+
+pre.src-dot:before {
+  content: 'Graphviz';
+}
+
+pre.src-calc:before {
+  content: 'Emacs Calc';
+}
+
+pre.src-emacs-lisp:before {
+  content: 'Emacs Lisp';
+}
+
+pre.src-fortran:before {
+  content: 'Fortran';
+}
+
+pre.src-gnuplot:before {
+  content: 'gnuplot';
+}
+
+pre.src-haskell:before {
+  content: 'Haskell';
+}
+
+pre.src-java:before {
+  content: 'Java';
+}
+
+pre.src-js:before {
+  content: 'Javascript';
+}
+
+pre.src-latex:before {
+  content: 'LaTeX';
+}
+
+pre.src-ledger:before {
+  content: 'Ledger';
+}
+
+pre.src-lisp:before {
+  content: 'Lisp';
+}
+
+pre.src-lilypond:before {
+  content: 'Lilypond';
+}
+
+pre.src-lua:before {
+  content: 'Lua';
+}
+
+pre.src-matlab:before {
+  content: 'MATLAB';
+}
+
+pre.src-mscgen:before {
+  content: 'Mscgen';
+}
+
+pre.src-ocaml:before {
+  content: 'Objective Caml';
+}
+
+pre.src-octave:before {
+  content: 'Octave';
+}
+
+pre.src-org:before {
+  content: 'Org mode';
+}
+
+pre.src-oz:before {
+  content: 'OZ';
+}
+
+pre.src-plantuml:before {
+  content: 'Plantuml';
+}
+
+pre.src-processing:before {
+  content: 'Processing.js';
+}
+
+pre.src-python:before {
+  content: 'Python';
+}
+
+pre.src-R:before {
+  content: 'R';
+}
+
+pre.src-ruby:before {
+  content: 'Ruby';
+}
+
+pre.src-sass:before {
+  content: 'Sass';
+}
+
+pre.src-scheme:before {
+  content: 'Scheme';
+}
+
+pre.src-screen:before {
+  content: 'Gnu Screen';
+}
+
+pre.src-sed:before {
+  content: 'Sed';
+}
+
+pre.src-sh:before {
+  content: 'shell';
+}
+
+pre.src-sql:before {
+  content: 'SQL';
+}
+
+pre.src-sqlite:before {
+  content: 'SQLite';
+}
+/* additional languages in org.el's org-babel-load-languages alist */
+
+pre.src-forth:before {
+  content: 'Forth';
+}
+
+pre.src-io:before {
+  content: 'IO';
+}
+
+pre.src-J:before {
+  content: 'J';
+}
+
+pre.src-makefile:before {
+  content: 'Makefile';
+}
+
+pre.src-maxima:before {
+  content: 'Maxima';
+}
+
+pre.src-perl:before {
+  content: 'Perl';
+}
+
+pre.src-picolisp:before {
+  content: 'Pico Lisp';
+}
+
+pre.src-scala:before {
+  content: 'Scala';
+}
+
+pre.src-shell:before {
+  content: 'Shell Script';
+}
+
+pre.src-ebnf2ps:before {
+  content: 'ebfn2ps';
+}
+/* additional language identifiers per "defun org-babel-execute"
+   in ob-*.el */
+
+pre.src-cpp:before {
+  content: 'C++';
+}
+
+pre.src-abc:before {
+  content: 'ABC';
+}
+
+pre.src-coq:before {
+  content: 'Coq';
+}
+
+pre.src-groovy:before {
+  content: 'Groovy';
+}
+/* additional language identifiers from org-babel-shell-names in
+ ob-shell.el: ob-shell is the only babel language using a lambda to put
+ the execution function name together. */
+
+pre.src-bash:before {
+  content: 'bash';
+}
+
+pre.src-csh:before {
+  content: 'csh';
+}
+
+pre.src-ash:before {
+  content: 'ash';
+}
+
+pre.src-dash:before {
+  content: 'dash';
+}
+
+pre.src-ksh:before {
+  content: 'ksh';
+}
+
+pre.src-mksh:before {
+  content: 'mksh';
+}
+
+pre.src-posh:before {
+  content: 'posh';
+}
+/* Additional Emacs modes also supported by the LaTeX listings package */
+
+pre.src-ada:before {
+  content: 'Ada';
+}
+
+pre.src-asm:before {
+  content: 'Assembler';
+}
+
+pre.src-caml:before {
+  content: 'Caml';
+}
+
+pre.src-delphi:before {
+  content: 'Delphi';
+}
+
+pre.src-html:before {
+  content: 'HTML';
+}
+
+pre.src-idl:before {
+  content: 'IDL';
+}
+
+pre.src-mercury:before {
+  content: 'Mercury';
+}
+
+pre.src-metapost:before {
+  content: 'MetaPost';
+}
+
+pre.src-modula-2:before {
+  content: 'Modula-2';
+}
+
+pre.src-pascal:before {
+  content: 'Pascal';
+}
+
+pre.src-ps:before {
+  content: 'PostScript';
+}
+
+pre.src-prolog:before {
+  content: 'Prolog';
+}
+
+pre.src-simula:before {
+  content: 'Simula';
+}
+
+pre.src-tcl:before {
+  content: 'tcl';
+}
+
+pre.src-tex:before {
+  content: 'TeX';
+}
+
+pre.src-plain-tex:before {
+  content: 'Plain TeX';
+}
+
+pre.src-verilog:before {
+  content: 'Verilog';
+}
+
+pre.src-vhdl:before {
+  content: 'VHDL';
+}
+
+pre.src-xml:before {
+  content: 'XML';
+}
+
+pre.src-nxml:before {
+  content: 'XML';
+}
+/* add a generic configuration mode; LaTeX export needs an additional
+ (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+
+pre.src-conf:before {
+  content: 'Configuration File';
+}
+
+table {
+  border-collapse: collapse;
+}
+
+caption.t-above {
+  caption-side: top;
+}
+
+caption.t-bottom {
+  caption-side: bottom;
+}
+
+td,
+th {
+  vertical-align: top;
+}
+
+th.org-right {
+  text-align: center;
+}
+
+th.org-left {
+  text-align: center;
+}
+
+th.org-center {
+  text-align: center;
+}
+
+td.org-right {
+  text-align: right;
+}
+
+td.org-left {
+  text-align: left;
+}
+
+td.org-center {
+  text-align: center;
+}
+
+dt {
+  font-weight: bold;
+}
+
+.footpara {
+  display: inline;
+}
+
+.footdef {
+  margin-bottom: 1em;
+}
+
+.figure {
+  padding: 1em;
+}
+
+.figure p {
+  text-align: center;
+}
+
+.inlinetask {
+  padding: 10px;
+  border: 2px solid gray;
+  margin: 10px;
+  background: #ffffcc;
+}
+
+#org-div-home-and-up {
+  text-align: right;
+  font-size: 70%;
+  white-space: nowrap;
+}
+
+textarea {
+  overflow-x: auto;
+}
+
+.linenr {
+  font-size: smaller
+}
+
+.code-highlighted {
+  background-color: #ffff00;
+}
+
+.org-info-js_info-navigation {
+  border-style: none;
+}
+
+#org-info-js_console-label {
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.org-info-js_search-highlight {
+  background-color: #ffff00;
+  color: #000000;
+  font-weight: bold;
+}
+
+.org-svg {
+  width: 90%;
+}
+/*]]>*/-->
 </style>
 <script type="text/javascript">
 /*
@@ -204,7 +580,7 @@ through which recipients can access the Corresponding Source.
 @licend  The above is the entire license notice
 for the JavaScript code in this tag.
 */
-// <![CDATA[
+<!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
    var target = document.getElementById(id);
@@ -223,7 +599,7 @@ for the JavaScript code in this tag.
    if(elem.cacheClassTarget)
      target.className = elem.cacheClassTarget;
  }
-// ]]>
+/*]]>*///-->
 </script>
 </head>
 <body>
@@ -234,35 +610,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9aa1518">1. インストール</a>
+<li><a href="#org59ea833">1. インストール</a>
 <ul>
-<li><a href="#orgddc8a50">1.1. JACKのリアルタイムスケジューリング</a></li>
+<li><a href="#org3e70d99">1.1. プラグイン</a></li>
+<li><a href="#org2c096a3">1.2. JACKのリアルタイムスケジューリング</a></li>
 </ul>
 </li>
-<li><a href="#org112a3f3">2. 動画チュートリアルとマニュアル</a></li>
-<li><a href="#orge752743">3. ワークフロー</a>
+<li><a href="#org42d3d6b">2. 動画チュートリアルとマニュアル</a></li>
+<li><a href="#org3c542a5">3. ワークフロー</a>
 <ul>
-<li><a href="#orga155f41">3.1. セッションの開始</a></li>
-<li><a href="#org9626c72">3.2. EditorとMixer画面の切り替え</a></li>
-<li><a href="#org6967359">3.3. MIDIトラックの追加</a></li>
-<li><a href="#orgbcf56c0">3.4. プラグインのGUIを表示</a></li>
-<li><a href="#org8dfaba8">3.5. MIDIノートの入力</a></li>
-<li><a href="#org2fbe7b2">3.6. テンポの変更</a></li>
-<li><a href="#orga461e5e">3.7. ループ再生</a></li>
-<li><a href="#orge29b741">3.8. MixerでAuxセンド</a></li>
-<li><a href="#org4bce0b9">3.9. プラグインの追加</a></li>
-<li><a href="#orgac718d5">3.10. オートメーション</a></li>
-<li><a href="#org2c44103">3.11. フリーズ</a></li>
+<li><a href="#org048dce2">3.1. セッションの開始</a></li>
+<li><a href="#org2e571bc">3.2. EditorとMixer画面の切り替え</a></li>
+<li><a href="#orga9a42ac">3.3. MIDIトラックの追加</a></li>
+<li><a href="#orgb1e6f02">3.4. プラグインのGUIを表示</a></li>
+<li><a href="#orgaaed0c1">3.5. MIDIノートの入力</a></li>
+<li><a href="#org6d0b95f">3.6. テンポの変更</a></li>
+<li><a href="#org9a2766e">3.7. ループ再生</a></li>
+<li><a href="#org0ba68b0">3.8. MixerでAuxセンド</a></li>
+<li><a href="#org8aaf252">3.9. プラグインの追加</a></li>
+<li><a href="#org0687868">3.10. オートメーション</a></li>
+<li><a href="#orgaa50c6f">3.11. フリーズ</a></li>
 </ul>
 </li>
-<li><a href="#org9facae1">4. スクリプティング</a>
+<li><a href="#org4a4a92d">4. スクリプティング</a>
 <ul>
-<li><a href="#orgeb01ab2">4.1. Minimal Example</a></li>
-<li><a href="#orge772b90">4.2. MIDI Regionの変更</a>
+<li><a href="#orgba1002b">4.1. Minimal Example</a></li>
+<li><a href="#org2d0854e">4.2. MIDI Regionの変更</a>
 <ul>
-<li><a href="#orgec223ac">4.2.1. 利用クラス</a></li>
-<li><a href="#orgdf307a6">4.2.2. 参考スクリプト</a></li>
-<li><a href="#org1742da3">4.2.3. 参考サイト</a></li>
+<li><a href="#org9c39513">4.2.1. 利用クラス</a></li>
+<li><a href="#org43b0842">4.2.2. 参考スクリプト</a></li>
+<li><a href="#org5f05a80">4.2.3. 参考サイト</a></li>
 </ul>
 </li>
 </ul>
@@ -271,32 +648,22 @@ for the JavaScript code in this tag.
 </div>
 </nav>
 <p>
-<a href="https://ardour.org/">Ardour</a>はGPLv2で配布されているレコーディングに重点を置いたDAWです。
+<a href="https://ardour.org/">Ardour</a>は<a href="https://www.gnu.org/philosophy/free-sw.ja.html">自由</a>でオープンなソフトウェア(<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">GPLv2</a>)として配布されていることが特徴のDAWです。
 </p>
 
 <p>
-ここではArdourでよく使いそうな操作手順をまとめています。
+この文章では<a href="https://getfedora.org/ja/">Fedora</a>26にArdour5をインストールして、基本的な操作手順を紹介します。
 </p>
 
-<div id="outline-container-org9aa1518" class="outline-2">
-<h2 id="org9aa1518"><span class="section-number-2">1</span> インストール</h2>
+<div id="outline-container-org59ea833" class="outline-2">
+<h2 id="org59ea833"><span class="section-number-2">1</span> インストール</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-dnfからインストールできます。後でプラグインを使いたいので<a href="http://yoshimi.sourceforge.net/">Yoshimi</a>、<a href="http://calf-studio-gear.org/">Calf Plug-ins</a>、<a href="https://amsynth.github.io/">amsynth</a>もまとめてインストールしておきます。
+Fedora26の場合はdnfからインストールできます。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">sudo dnf install ardour5 yoshimi lv2-calf-plugins lv2-amsynth-plugin
-</pre>
-</div>
-
-<p>
-<a href="http://manual.ardour.org/working-with-plugins/">プラグイン</a>については主に<a href="http://www.ladspa.org/">LADSPA</a>と<a href="http://lv2plug.in/">LV2</a>が利用できます。Fedora 26の公式リポジトリでいくつか配布されているのでdnf searchで探してみてください。
-</p>
-
-<div class="org-src-container">
-<pre class="src src-bash">sudo dnf search lv2
-sudo dnf search ladspa
+<pre class="src src-bash">sudo dnf install ardour5
 </pre>
 </div>
 
@@ -309,9 +676,37 @@ Ardourを起動するとSession Setupが開くのでNew Sessionからセッシ�
 </p>
 </div>
 
-<div id="outline-container-orgddc8a50" class="outline-3">
-<h3 id="orgddc8a50"><span class="section-number-3">1.1</span> JACKのリアルタイムスケジューリング</h3>
+<div id="outline-container-org3e70d99" class="outline-3">
+<h3 id="org3e70d99"><span class="section-number-3">1.1</span> プラグイン</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+Ardourでサポートされている<a href="http://manual.ardour.org/working-with-plugins/">プラグイン</a>は<a href="http://www.ladspa.org/">LADSPA</a>、<a href="http://lv2plug.in/">LV2</a>、<a href="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/AudioUnitProgrammingGuide/Introduction/Introduction.html">AU</a> (Macのみ)、<a href="https://www.steinberg.net/en/company/developers.html">VST</a>です。Windows向けにコンパイルされたVSTをLinux上で利用することもできますが<a href="http://manual.ardour.org/working-with-plugins/windows-vst-support/">非推奨</a>となっています。
+</p>
+
+<p>
+LV2とLADSPAのプラグインはFedora26の公式リポジトリでいくつか配布されているので <code>dnf search</code> で探すことができます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf search lv2
+sudo dnf search ladspa
+</pre>
+</div>
+
+<p>
+手始めに<a href="http://yoshimi.sourceforge.net/">Yoshimi</a>、<a href="http://calf-studio-gear.org/">Calf Plug-ins</a>、<a href="https://amsynth.github.io/">amsynth</a>をインストールします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf install yoshimi lv2-calf-plugins lv2-amsynth-plugin
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c096a3" class="outline-3">
+<h3 id="org2c096a3"><span class="section-number-3">1.2</span> JACKのリアルタイムスケジューリング</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 セッションを開いた時に以下の警告が出て起動に失敗することがあります。
 </p>
@@ -323,7 +718,7 @@ You can view the memory limit with 'ulimit -l', and it is normally controlled by
 </pre>
 
 <p>
-この問題はリアルタイムスケジューリングを設定することで解決します。以下はFedora 26で必要な設定です。
+この問題はカーネルのリアルタイムスケジューリングを設定することで解決します。以下はFedora 26で必要な設定です。
 </p>
 
 <p>
@@ -371,8 +766,8 @@ realtimeグループからユーザを除外するときは <code>gpasswd -d</co
 </div>
 </div>
 
-<div id="outline-container-org112a3f3" class="outline-2">
-<h2 id="org112a3f3"><span class="section-number-2">2</span> 動画チュートリアルとマニュアル</h2>
+<div id="outline-container-org42d3d6b" class="outline-2">
+<h2 id="org42d3d6b"><span class="section-number-2">2</span> 動画チュートリアルとマニュアル</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 JHoermann // Linux audio productionさんの動画チュートリアルがまとまっています。
@@ -384,7 +779,7 @@ JHoermann // Linux audio productionさんの動画チュートリアルがまと
 </ul>
 
 <p>
-よくわからない機能があれば機能名をコピーして<a href="http://manual.ardour.org/toc/">The Ardour Manual</a>のサイドバーにある検索窓から調べることができます。
+よくわからない機能があれば機能名をコピーして<a href="http://manual.ardour.org/toc/">The Ardour Manual</a>のサイドバーにある検索窓から調べることができます。以下は押さえておくと便利なマニュアルのページです。
 </p>
 
 <ul class="org-ul">
@@ -395,17 +790,17 @@ JHoermann // Linux audio productionさんの動画チュートリアルがまと
 </div>
 </div>
 
-<div id="outline-container-orge752743" class="outline-2">
-<h2 id="orge752743"><span class="section-number-2">3</span> ワークフロー</h2>
+<div id="outline-container-org3c542a5" class="outline-2">
+<h2 id="org3c542a5"><span class="section-number-2">3</span> ワークフロー</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orga155f41" class="outline-3">
-<h3 id="orga155f41"><span class="section-number-3">3.1</span> セッションの開始</h3>
+</div><div id="outline-container-org048dce2" class="outline-3">
+<h3 id="org048dce2"><span class="section-number-3">3.1</span> セッションの開始</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 新しい<a href="http://manual.ardour.org/working-with-sessions/whats-in-a-session/">セッション</a>を作ります。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_new_session.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -414,30 +809,34 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org9626c72" class="outline-3">
-<h3 id="org9626c72"><span class="section-number-3">3.2</span> EditorとMixer画面の切り替え</h3>
+<div id="outline-container-org2e571bc" class="outline-3">
+<h3 id="org2e571bc"><span class="section-number-3">3.2</span> EditorとMixer画面の切り替え</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Alt+Mでも画面の切り替えができます。EditorとMixerのボタンを右クリックするとメニューが表示されて別ウィンドウとして表示(Detach)もできます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_editor_mixer.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
 </p>
 </video>
+
+<p>
+メニューバーのViewからShow Editor Mixer (Shift+E)を表示すればEditor画面にMixer Stripを表示することもできます。
+</p>
 </div>
 </div>
 
-<div id="outline-container-org6967359" class="outline-3">
-<h3 id="org6967359"><span class="section-number-3">3.3</span> MIDIトラックの追加</h3>
+<div id="outline-container-orga9a42ac" class="outline-3">
+<h3 id="orga9a42ac"><span class="section-number-3">3.3</span> MIDIトラックの追加</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="http://manual.ardour.org/midi/">MIDI</a>トラックを追加します。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_add_midi_track.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -445,10 +844,10 @@ Your browser does not support the video tag.
 </video>
 
 <p>
-次の動画では鍵盤の音域を変更します。
+鍵盤の音域を変更します。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_midi_track_keyboard.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -457,8 +856,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orgbcf56c0" class="outline-3">
-<h3 id="orgbcf56c0"><span class="section-number-3">3.4</span> プラグインのGUIを表示</h3>
+<div id="outline-container-orgb1e6f02" class="outline-3">
+<h3 id="orgb1e6f02"><span class="section-number-3">3.4</span> プラグインのGUIを表示</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <a href="http://manual.ardour.org/working-with-plugins/">プラグイン</a>側で用意されたGUIの他に、Ardourの<a href="http://manual.ardour.org/working-with-plugins/working-with-ardour-built-plugin-editors/">Generic Plugin Editor</a>も使うことができます。
@@ -468,7 +867,7 @@ Your browser does not support the video tag.
 動画ではメニューからGUIを表示していますが、プラグインをダブルクリックでもGUIを表示できます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_plugin_gui.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -477,14 +876,14 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org8dfaba8" class="outline-3">
-<h3 id="org8dfaba8"><span class="section-number-3">3.5</span> MIDIノートの入力</h3>
+<div id="outline-container-orgaaed0c1" class="outline-3">
+<h3 id="orgaaed0c1"><span class="section-number-3">3.5</span> MIDIノートの入力</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 まずは<a href="http://manual.ardour.org/ardours-interface/the-toolbox/">Draw Mode</a>で<a href="http://manual.ardour.org/working-with-midi/create-midi-regions/">MIDI Regionを作ります</a>。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_midi_region.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -499,7 +898,7 @@ Your browser does not support the video tag.
 <a href="http://manual.ardour.org/ardours-interface/the-grid-controls/">Grid Controls</a>でスナップの設定ができます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_midi_note_draw.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -520,7 +919,7 @@ Draw Modeでは以下のショートカットが使えます。
 Stretch Mode (T)を使えばRegion単位で長さを伸縮できます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_midi_note_stretch.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -529,14 +928,14 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org2fbe7b2" class="outline-3">
-<h3 id="org2fbe7b2"><span class="section-number-3">3.6</span> テンポの変更</h3>
+<div id="outline-container-org6d0b95f" class="outline-3">
+<h3 id="org6d0b95f"><span class="section-number-3">3.6</span> テンポの変更</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 <a href="http://manual.ardour.org/ardours-interface/using-ardour-clock-displays/">Transport Clocks</a>からテンポを変更できます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_tempo.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -545,14 +944,14 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orga461e5e" class="outline-3">
-<h3 id="orga461e5e"><span class="section-number-3">3.7</span> ループ再生</h3>
+<div id="outline-container-org9a2766e" class="outline-3">
+<h3 id="org9a2766e"><span class="section-number-3">3.7</span> ループ再生</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 <a href="http://manual.ardour.org/ardours-interface/the-ruler/">Ruler</a>のLoop Rangeは、Regionを選択してショートカットのLで設定することもできます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_loop_region.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -561,14 +960,14 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orge29b741" class="outline-3">
-<h3 id="orge29b741"><span class="section-number-3">3.8</span> MixerでAuxセンド</h3>
+<div id="outline-container-org0ba68b0" class="outline-3">
+<h3 id="org0ba68b0"><span class="section-number-3">3.8</span> MixerでAuxセンド</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 <a href="http://manual.ardour.org/working-with-tracks/bus-controls/">Bus</a>を追加して<a href="http://manual.ardour.org/signal-routing/aux-sends/">Auxセンド</a>を使います。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_audio_bus_send.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -577,14 +976,14 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org4bce0b9" class="outline-3">
-<h3 id="org4bce0b9"><span class="section-number-3">3.9</span> プラグインの追加</h3>
+<div id="outline-container-org8aaf252" class="outline-3">
+<h3 id="org8aaf252"><span class="section-number-3">3.9</span> プラグインの追加</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 <a href="http://manual.ardour.org/ardours-interface/audio-midi-mixer-strips/">Mixer Strip</a>にプラグインを追加します。プラグインはドラッグで順番を変更できます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_add_FX_plugin.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -593,14 +992,14 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orgac718d5" class="outline-3">
-<h3 id="orgac718d5"><span class="section-number-3">3.10</span> オートメーション</h3>
+<div id="outline-container-org0687868" class="outline-3">
+<h3 id="org0687868"><span class="section-number-3">3.10</span> オートメーション</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 横向きのスライダとして表示されるパラメータは<a href="http://manual.ardour.org/automation/">オートメーション</a>ができます。<a href="http://manual.ardour.org/mixing/automation/automation-modes/">Automation Mode</a>をWriteかTouchに設定した上で、録音を開始してフェーダを動かすことでオートメーションを記録できます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_automation_mixer.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -611,7 +1010,7 @@ Your browser does not support the video tag.
 オートメーションを行うパラメータはEditorから選択することもできます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_automation_editor.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -620,8 +1019,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org2c44103" class="outline-3">
-<h3 id="org2c44103"><span class="section-number-3">3.11</span> フリーズ</h3>
+<div id="outline-container-orgaa50c6f" class="outline-3">
+<h3 id="orgaa50c6f"><span class="section-number-3">3.11</span> フリーズ</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 Ardourでは今のところMIDIトラックのプラグイン出力を直接フリーズできる機能は無いようです。
@@ -631,7 +1030,7 @@ Ardourでは今のところMIDIトラックのプラグイン出力を直接フ�
 以下のスクリーンキャストではAudioトラックを用意して録音しています。<a href="http://manual.ardour.org/signal-routing/Patchbay/">パッチベイ</a>の表示は右クリックで行っていますが、左クリック -&gt; Routing Gridでも同じ画面が表示されます。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_midi_freeze.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -641,16 +1040,16 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org9facae1" class="outline-2">
-<h2 id="org9facae1"><span class="section-number-2">4</span> スクリプティング</h2>
+<div id="outline-container-org4a4a92d" class="outline-2">
+<h2 id="org4a4a92d"><span class="section-number-2">4</span> スクリプティング</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Ardourでは<a href="http://www.lua.org/home.html">Lua</a>を使ってスクリプトを書くことができます。Luaの文法については<a href="http://www.lua.org/pil/contents.html">Programming in Lua (first edition)</a>が参考になります。スクリプティングに関する資料としては<a href="http://manual.ardour.org/lua-scripting/class_reference/">マニュアルのリファレンス</a>や<a href="https://github.com/Ardour/ardour/tree/master/scripts">ソースコードに含まれている例</a>があります。
 </p>
 </div>
 
-<div id="outline-container-orgeb01ab2" class="outline-3">
-<h3 id="orgeb01ab2"><span class="section-number-3">4.1</span> Minimal Example</h3>
+<div id="outline-container-orgba1002b" class="outline-3">
+<h3 id="orgba1002b"><span class="section-number-3">4.1</span> Minimal Example</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 まずは<a href="http://manual.ardour.org/lua-scripting/">The Ardour Manual - Lua Scripting</a>のScript Layoutにあるminimal exampleを試します。以下の内容を~/.config/ardour5/scripts/rewind.luaに保存します。
@@ -678,7 +1077,7 @@ Ardourを開いて上のメニューからEdit -&gt; Lua Scripts -&gt; Script Ma
 以下の動画ではCallのかわりにEdit -&gt; Runで実行しています。Editで開くエディタはスクリプトの出力が表示されるのでデバッグのときに便利です。
 </p>
 
-<video controls loop width="800">
+<video controls="controls" width="800">
 <source src="./video/ardour_lua_script_action.mp4" type="video/mp4">
 <p>
 Your browser does not support the video tag.
@@ -687,8 +1086,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orge772b90" class="outline-3">
-<h3 id="orge772b90"><span class="section-number-3">4.2</span> MIDI Regionの変更</h3>
+<div id="outline-container-org2d0854e" class="outline-3">
+<h3 id="org2d0854e"><span class="section-number-3">4.2</span> MIDI Regionの変更</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 MIDIノートのベロシティをランダマイズするスクリプトです。
@@ -783,8 +1182,8 @@ end end
 </p>
 </div>
 
-<div id="outline-container-orgec223ac" class="outline-4">
-<h4 id="orgec223ac"><span class="section-number-4">4.2.1</span> 利用クラス</h4>
+<div id="outline-container-org9c39513" class="outline-4">
+<h4 id="org9c39513"><span class="section-number-4">4.2.1</span> 利用クラス</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li><a href="http://manual.ardour.org/lua-scripting/class_reference/#ArdourUI:Editor">ArdourUI:Editor</a></li>
@@ -803,8 +1202,8 @@ end end
 </div>
 </div>
 
-<div id="outline-container-orgdf307a6" class="outline-4">
-<h4 id="orgdf307a6"><span class="section-number-4">4.2.2</span> 参考スクリプト</h4>
+<div id="outline-container-org43b0842" class="outline-4">
+<h4 id="org43b0842"><span class="section-number-4">4.2.2</span> 参考スクリプト</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li><a href="https://github.com/Ardour/ardour/blob/master/scripts/_dump_midiregion.lua">ardour/_dump_midiregion.lua at master · Ardour/ardour · GitHub</a></li>
@@ -829,8 +1228,8 @@ end end
 </div>
 </div>
 
-<div id="outline-container-org1742da3" class="outline-4">
-<h4 id="org1742da3"><span class="section-number-4">4.2.3</span> 参考サイト</h4>
+<div id="outline-container-org5f05a80" class="outline-4">
+<h4 id="org5f05a80"><span class="section-number-4">4.2.3</span> 参考サイト</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <ul class="org-ul">
 <li><a href="http://www.lua.org/pil/contents.html">Programming in Lua (first edition)</a></li>

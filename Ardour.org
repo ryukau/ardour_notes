@@ -1,27 +1,38 @@
 #+TITLE: Ardourクイックスタート
+#+AUTHOR: 
 #+OPTIONS: html-postamble:nil
+#+OPTIONS: html-style:nil
 
-[[https://ardour.org/][Ardour]]はGPLv2で配布されているレコーディングに重点を置いたDAWです。
+[[https://ardour.org/][Ardour]]は[[https://www.gnu.org/philosophy/free-sw.ja.html][自由]]でオープンなソフトウェア([[https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html][GPLv2]])として配布されていることが特徴のDAWです。
 
-ここではArdourでよく使いそうな操作手順をまとめています。
+この文章では[[https://getfedora.org/ja/][Fedora]]26にArdour5をインストールして、基本的な操作手順を紹介します。
 
 ** インストール
-dnfからインストールできます。とりあえず[[http://yoshimi.sourceforge.net/][Yoshimi]]、[[http://calf-studio-gear.org/][Calf Plug-ins]]、[[https://amsynth.github.io/][amsynth]]をインストールしておきます。
+Fedora26の場合はdnfからインストールできます。
 
 #+BEGIN_SRC bash
-sudo dnf install ardour5 yoshimi lv2-calf-plugins lv2-amsynth-plugin
+sudo dnf install ardour5
 #+END_SRC
 
-[[http://manual.ardour.org/working-with-plugins/][プラグイン]]については主に[[http://www.ladspa.org/][LADSPA]]と[[http://lv2plug.in/][LV2]]が利用できます。Fedora 26の公式リポジトリでいくつか配布されているのでdnf searchで探してみてください。
+初回起動時に表示されるWelcome to Ardourでの設定はデフォルトのままで問題ありません。
+
+Ardourを起動するとSession Setupが開くのでNew Sessionからセッションを作って起動します。
+
+*** プラグイン
+Ardourでサポートされている[[http://manual.ardour.org/working-with-plugins/][プラグイン]]は[[http://www.ladspa.org/][LADSPA]]、[[http://lv2plug.in/][LV2]]、[[https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/AudioUnitProgrammingGuide/Introduction/Introduction.html][AU]] (Macのみ)、[[https://www.steinberg.net/en/company/developers.html][VST]]です。Windows向けにコンパイルされたVSTをLinux上で利用することもできますが[[http://manual.ardour.org/working-with-plugins/windows-vst-support/][非推奨]]となっています。
+
+LV2とLADSPAのプラグインはFedora26の公式リポジトリでいくつか配布されているので =dnf search= で探すことができます。
 
 #+BEGIN_SRC bash
 sudo dnf search lv2
 sudo dnf search ladspa
 #+END_SRC
 
-初回起動時に表示されるWelcome to Ardourでの設定はデフォルトのままで問題ありません。
+手始めに[[http://yoshimi.sourceforge.net/][Yoshimi]]、[[http://calf-studio-gear.org/][Calf Plug-ins]]、[[https://amsynth.github.io/][amsynth]]をインストールします。
 
-Ardourを起動するとSession Setupが開くのでNew Sessionからセッションを作って起動します。
+#+BEGIN_SRC bash
+sudo dnf install yoshimi lv2-calf-plugins lv2-amsynth-plugin
+#+END_SRC
 
 *** JACKのリアルタイムスケジューリング
 セッションを開いた時に以下の警告が出て起動に失敗することがあります。
@@ -32,7 +43,7 @@ WARNING: Your system has a limit for maximum amount of locked memory. This might
 You can view the memory limit with 'ulimit -l', and it is normally controlled by  /etc/security/limits.conf
 #+END_EXAMPLE
 
-この問題はリアルタイムスケジューリングを設定することで解決します。以下はFedora 26で必要な設定です。
+この問題はカーネルのリアルタイムスケジューリングを設定することで解決します。以下はFedora 26で必要な設定です。
 
 リアルタイムスケジューリングの設定ファイルを作成して開きます。
 
@@ -69,7 +80,7 @@ JHoermann // Linux audio productionさんの動画チュートリアルがまと
 - [[https://www.youtube.com/watch?v=arvPwZlU1ak][Recording on Linux - with Ardour 5 | Tutorials]]
 - [[https://www.youtube.com/watch?v=9jclRW6ByGo][Audio Plugins on Linux - with Ardour 5 | Tutorials]]
 
-よくわからない機能があれば機能名をコピーして[[http://manual.ardour.org/toc/][The Ardour Manual]]のサイドバーにある検索窓から調べることができます。
+よくわからない機能があれば機能名をコピーして[[http://manual.ardour.org/toc/][The Ardour Manual]]のサイドバーにある検索窓から調べることができます。以下は押さえておくと便利なマニュアルのページです。
 
 - UIで迷ったら[[http://manual.ardour.org/ardours-interface/about/][Ardour's Interface Overview]]
 - 基本的な再生と停止の操作方法は[[http://manual.ardour.org/playback-recording/playing-back-track-material/][Playing Back Track Material]]
@@ -94,6 +105,8 @@ Alt+Mでも画面の切り替えができます。EditorとMixerのボタンを�
 Your browser does not support the video tag.
 #+END_video
 
+メニューバーのViewからShow Editor Mixer (Shift+E)を表示すればEditor画面にMixer Stripを表示することもできます。
+
 *** MIDIトラックの追加
 [[http://manual.ardour.org/midi/][MIDI]]トラックを追加します。
 
@@ -103,7 +116,7 @@ Your browser does not support the video tag.
 Your browser does not support the video tag.
 #+END_video
 
-次の動画では鍵盤の音域を変更します。
+鍵盤の音域を変更します。
 
 #+ATTR_HTML: :controls controls :width 800
 #+BEGIN_video

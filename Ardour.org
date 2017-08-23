@@ -125,9 +125,7 @@ Your browser does not support the video tag.
 #+END_video
 
 *** プラグインのGUIを表示
-[[http://manual.ardour.org/working-with-plugins/][プラグイン]]側で用意されたGUIの他に、Ardourの[[http://manual.ardour.org/working-with-plugins/working-with-ardour-built-plugin-editors/][Generic Plugin Editor]]も使うことができます。
-
-動画ではメニューからGUIを表示していますが、プラグインをダブルクリックでもGUIを表示できます。
+[[http://manual.ardour.org/working-with-plugins/][プラグイン]]側で用意されたGUIの他に、Ardourの[[http://manual.ardour.org/working-with-plugins/working-with-ardour-built-plugin-editors/][Generic Plugin Editor]]も使うことができます。GUIはプラグインのアイコンをダブルクリックすることでも表示できます。
 
 #+ATTR_HTML: :controls controls :width 800
 #+BEGIN_video

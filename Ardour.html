@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-08-22 Tue 21:38 -->
+<!-- 2017-08-23 Wed 13:07 -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ardourクイックスタート</title>
 <meta name="generator" content="Org mode">
 <style type="text/css">
@@ -610,36 +609,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5286f47">1. インストール</a>
+<li><a href="#org678ae41">1. インストール</a>
 <ul>
-<li><a href="#orgdaa2650">1.1. プラグイン</a></li>
-<li><a href="#orgd8f76de">1.2. JACKのリアルタイムスケジューリング</a></li>
+<li><a href="#org233678b">1.1. プラグイン</a></li>
+<li><a href="#orga26154d">1.2. JACKのリアルタイムスケジューリング</a></li>
 </ul>
 </li>
-<li><a href="#orgbfadd0b">2. 動画チュートリアルとマニュアル</a></li>
-<li><a href="#org13c9551">3. ワークフロー</a>
+<li><a href="#org28b351d">2. 動画チュートリアルとマニュアル</a></li>
+<li><a href="#org55a8903">3. ワークフロー</a>
 <ul>
-<li><a href="#org5de038f">3.1. セッションの開始</a></li>
-<li><a href="#org699448d">3.2. EditorとMixer画面の切り替え</a></li>
-<li><a href="#org19d015a">3.3. MIDIトラックの追加</a></li>
-<li><a href="#org5c792c8">3.4. プラグインのGUIを表示</a></li>
-<li><a href="#org0d45550">3.5. MIDIノートの入力</a></li>
-<li><a href="#org09a346a">3.6. テンポの変更</a></li>
-<li><a href="#orga19f9b1">3.7. ループ再生</a></li>
-<li><a href="#orgc21a775">3.8. MixerでAuxセンド</a></li>
-<li><a href="#orga1e5d29">3.9. プラグインの追加</a></li>
-<li><a href="#org6ad3c16">3.10. オートメーション</a></li>
-<li><a href="#org0a51ba3">3.11. フリーズ</a></li>
+<li><a href="#org6fdfe97">3.1. セッションの開始</a></li>
+<li><a href="#orgae85469">3.2. EditorとMixer画面の切り替え</a></li>
+<li><a href="#org5e046bb">3.3. MIDIトラックの追加</a></li>
+<li><a href="#org098ef8a">3.4. プラグインのGUIを表示</a></li>
+<li><a href="#orgffac644">3.5. MIDIノートの入力</a></li>
+<li><a href="#orgd8c8419">3.6. テンポの変更</a></li>
+<li><a href="#orgdf74f4e">3.7. ループ再生</a></li>
+<li><a href="#org31e211b">3.8. MixerでAuxセンド</a></li>
+<li><a href="#org52dc94d">3.9. プラグインの追加</a></li>
+<li><a href="#org8454fea">3.10. オートメーション</a></li>
+<li><a href="#org76a4c8d">3.11. フリーズ</a></li>
 </ul>
 </li>
-<li><a href="#org4b50f22">4. スクリプティング</a>
+<li><a href="#orgf821cef">4. スクリプティング</a>
 <ul>
-<li><a href="#org362572e">4.1. Minimal Example</a></li>
-<li><a href="#org0825223">4.2. MIDI Regionの変更</a>
+<li><a href="#orgd524b02">4.1. Minimal Example</a></li>
+<li><a href="#orgd5b5bde">4.2. MIDI Regionの変更</a>
 <ul>
-<li><a href="#org3c71c41">4.2.1. 利用クラス</a></li>
-<li><a href="#orga88ba6e">4.2.2. 参考スクリプト</a></li>
-<li><a href="#orgd90ee29">4.2.3. 参考サイト</a></li>
+<li><a href="#orgefcbd8f">4.2.1. 利用クラス</a></li>
+<li><a href="#org5876f86">4.2.2. 参考スクリプト</a></li>
+<li><a href="#org91376cc">4.2.3. 参考サイト</a></li>
 </ul>
 </li>
 </ul>
@@ -655,8 +654,8 @@ for the JavaScript code in this tag.
 この文章では<a href="https://getfedora.org/ja/">Fedora</a>26にArdour5をインストールして、基本的な使い方を紹介します。
 </p>
 
-<div id="outline-container-org5286f47" class="outline-2">
-<h2 id="org5286f47"><span class="section-number-2">1</span> インストール</h2>
+<div id="outline-container-org678ae41" class="outline-2">
+<h2 id="org678ae41"><span class="section-number-2">1</span> インストール</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Fedora26の場合はdnfからインストールできます。
@@ -676,8 +675,8 @@ Ardourを起動するとSession Setupが開くのでNew Sessionからセッシ�
 </p>
 </div>
 
-<div id="outline-container-orgdaa2650" class="outline-3">
-<h3 id="orgdaa2650"><span class="section-number-3">1.1</span> プラグイン</h3>
+<div id="outline-container-org233678b" class="outline-3">
+<h3 id="org233678b"><span class="section-number-3">1.1</span> プラグイン</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Ardourでサポートされている<a href="http://manual.ardour.org/working-with-plugins/">プラグイン</a>は<a href="http://www.ladspa.org/">LADSPA</a>、<a href="http://lv2plug.in/">LV2</a>、<a href="https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/AudioUnitProgrammingGuide/Introduction/Introduction.html">AU</a> (Macのみ)、<a href="https://www.steinberg.net/en/company/developers.html">VST</a>です。Windows向けにコンパイルされたVSTをLinux上で利用することもできますが<a href="http://manual.ardour.org/working-with-plugins/windows-vst-support/">非推奨</a>となっています。
@@ -704,8 +703,8 @@ sudo dnf search ladspa
 </div>
 </div>
 
-<div id="outline-container-orgd8f76de" class="outline-3">
-<h3 id="orgd8f76de"><span class="section-number-3">1.2</span> JACKのリアルタイムスケジューリング</h3>
+<div id="outline-container-orga26154d" class="outline-3">
+<h3 id="orga26154d"><span class="section-number-3">1.2</span> JACKのリアルタイムスケジューリング</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 セッションを開いた時に以下の警告が出て起動に失敗することがあります。
@@ -766,8 +765,8 @@ realtimeグループからユーザを除外するときは <code>gpasswd -d</co
 </div>
 </div>
 
-<div id="outline-container-orgbfadd0b" class="outline-2">
-<h2 id="orgbfadd0b"><span class="section-number-2">2</span> 動画チュートリアルとマニュアル</h2>
+<div id="outline-container-org28b351d" class="outline-2">
+<h2 id="org28b351d"><span class="section-number-2">2</span> 動画チュートリアルとマニュアル</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 JHoermann // Linux audio productionさんの動画チュートリアルがまとまっています。
@@ -790,11 +789,11 @@ JHoermann // Linux audio productionさんの動画チュートリアルがまと
 </div>
 </div>
 
-<div id="outline-container-org13c9551" class="outline-2">
-<h2 id="org13c9551"><span class="section-number-2">3</span> ワークフロー</h2>
+<div id="outline-container-org55a8903" class="outline-2">
+<h2 id="org55a8903"><span class="section-number-2">3</span> ワークフロー</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org5de038f" class="outline-3">
-<h3 id="org5de038f"><span class="section-number-3">3.1</span> セッションの開始</h3>
+</div><div id="outline-container-org6fdfe97" class="outline-3">
+<h3 id="org6fdfe97"><span class="section-number-3">3.1</span> セッションの開始</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 新しい<a href="http://manual.ardour.org/working-with-sessions/whats-in-a-session/">セッション</a>を作ります。
@@ -809,8 +808,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org699448d" class="outline-3">
-<h3 id="org699448d"><span class="section-number-3">3.2</span> EditorとMixer画面の切り替え</h3>
+<div id="outline-container-orgae85469" class="outline-3">
+<h3 id="orgae85469"><span class="section-number-3">3.2</span> EditorとMixer画面の切り替え</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Alt+Mでも画面の切り替えができます。EditorとMixerのボタンを右クリックするとメニューが表示されて別ウィンドウとして表示(Detach)もできます。
@@ -829,8 +828,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org19d015a" class="outline-3">
-<h3 id="org19d015a"><span class="section-number-3">3.3</span> MIDIトラックの追加</h3>
+<div id="outline-container-org5e046bb" class="outline-3">
+<h3 id="org5e046bb"><span class="section-number-3">3.3</span> MIDIトラックの追加</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="http://manual.ardour.org/midi/">MIDI</a>トラックを追加します。
@@ -856,15 +855,11 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org5c792c8" class="outline-3">
-<h3 id="org5c792c8"><span class="section-number-3">3.4</span> プラグインのGUIを表示</h3>
+<div id="outline-container-org098ef8a" class="outline-3">
+<h3 id="org098ef8a"><span class="section-number-3">3.4</span> プラグインのGUIを表示</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-<a href="http://manual.ardour.org/working-with-plugins/">プラグイン</a>側で用意されたGUIの他に、Ardourの<a href="http://manual.ardour.org/working-with-plugins/working-with-ardour-built-plugin-editors/">Generic Plugin Editor</a>も使うことができます。
-</p>
-
-<p>
-動画ではメニューからGUIを表示していますが、プラグインをダブルクリックでもGUIを表示できます。
+<a href="http://manual.ardour.org/working-with-plugins/">プラグイン</a>側で用意されたGUIの他に、Ardourの<a href="http://manual.ardour.org/working-with-plugins/working-with-ardour-built-plugin-editors/">Generic Plugin Editor</a>も使うことができます。GUIはプラグインのアイコンをダブルクリックすることでも表示できます。
 </p>
 
 <video controls="controls" width="800">
@@ -876,8 +871,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org0d45550" class="outline-3">
-<h3 id="org0d45550"><span class="section-number-3">3.5</span> MIDIノートの入力</h3>
+<div id="outline-container-orgffac644" class="outline-3">
+<h3 id="orgffac644"><span class="section-number-3">3.5</span> MIDIノートの入力</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 まずは<a href="http://manual.ardour.org/ardours-interface/the-toolbox/">Draw Mode</a>で<a href="http://manual.ardour.org/working-with-midi/create-midi-regions/">MIDI Regionを作ります</a>。
@@ -928,8 +923,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org09a346a" class="outline-3">
-<h3 id="org09a346a"><span class="section-number-3">3.6</span> テンポの変更</h3>
+<div id="outline-container-orgd8c8419" class="outline-3">
+<h3 id="orgd8c8419"><span class="section-number-3">3.6</span> テンポの変更</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 <a href="http://manual.ardour.org/ardours-interface/using-ardour-clock-displays/">Transport Clocks</a>からテンポを変更できます。
@@ -944,8 +939,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orga19f9b1" class="outline-3">
-<h3 id="orga19f9b1"><span class="section-number-3">3.7</span> ループ再生</h3>
+<div id="outline-container-orgdf74f4e" class="outline-3">
+<h3 id="orgdf74f4e"><span class="section-number-3">3.7</span> ループ再生</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 <a href="http://manual.ardour.org/ardours-interface/the-ruler/">Ruler</a>のLoop Rangeは、Regionを選択してショートカットのLで設定することもできます。
@@ -960,8 +955,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orgc21a775" class="outline-3">
-<h3 id="orgc21a775"><span class="section-number-3">3.8</span> MixerでAuxセンド</h3>
+<div id="outline-container-org31e211b" class="outline-3">
+<h3 id="org31e211b"><span class="section-number-3">3.8</span> MixerでAuxセンド</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 <a href="http://manual.ardour.org/working-with-tracks/bus-controls/">Bus</a>を追加して<a href="http://manual.ardour.org/signal-routing/aux-sends/">Auxセンド</a>を使います。
@@ -976,8 +971,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-orga1e5d29" class="outline-3">
-<h3 id="orga1e5d29"><span class="section-number-3">3.9</span> プラグインの追加</h3>
+<div id="outline-container-org52dc94d" class="outline-3">
+<h3 id="org52dc94d"><span class="section-number-3">3.9</span> プラグインの追加</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 <a href="http://manual.ardour.org/ardours-interface/audio-midi-mixer-strips/">Mixer Strip</a>にプラグインを追加します。プラグインはドラッグで順番を変更できます。
@@ -992,8 +987,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org6ad3c16" class="outline-3">
-<h3 id="org6ad3c16"><span class="section-number-3">3.10</span> オートメーション</h3>
+<div id="outline-container-org8454fea" class="outline-3">
+<h3 id="org8454fea"><span class="section-number-3">3.10</span> オートメーション</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 横向きのスライダとして表示されるパラメータは<a href="http://manual.ardour.org/automation/">オートメーション</a>ができます。<a href="http://manual.ardour.org/mixing/automation/automation-modes/">Automation Mode</a>をWriteかTouchに設定した上で、録音を開始してフェーダを動かすことでオートメーションを記録できます。
@@ -1019,8 +1014,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org0a51ba3" class="outline-3">
-<h3 id="org0a51ba3"><span class="section-number-3">3.11</span> フリーズ</h3>
+<div id="outline-container-org76a4c8d" class="outline-3">
+<h3 id="org76a4c8d"><span class="section-number-3">3.11</span> フリーズ</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 Ardourでは今のところMIDIトラックのプラグイン出力を直接フリーズできる機能は無いようです。
@@ -1040,16 +1035,16 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org4b50f22" class="outline-2">
-<h2 id="org4b50f22"><span class="section-number-2">4</span> スクリプティング</h2>
+<div id="outline-container-orgf821cef" class="outline-2">
+<h2 id="orgf821cef"><span class="section-number-2">4</span> スクリプティング</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Ardourでは<a href="http://www.lua.org/home.html">Lua</a>を使ってスクリプトを書くことができます。Luaの文法については<a href="http://www.lua.org/pil/contents.html">Programming in Lua (first edition)</a>が参考になります。スクリプティングに関する資料としては<a href="http://manual.ardour.org/lua-scripting/class_reference/">マニュアルのリファレンス</a>や<a href="https://github.com/Ardour/ardour/tree/master/scripts">ソースコードに含まれている例</a>があります。
 </p>
 </div>
 
-<div id="outline-container-org362572e" class="outline-3">
-<h3 id="org362572e"><span class="section-number-3">4.1</span> Minimal Example</h3>
+<div id="outline-container-orgd524b02" class="outline-3">
+<h3 id="orgd524b02"><span class="section-number-3">4.1</span> Minimal Example</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 まずは<a href="http://manual.ardour.org/lua-scripting/">The Ardour Manual - Lua Scripting</a>のScript Layoutにあるminimal exampleを試します。以下の内容を~/.config/ardour5/scripts/rewind.luaに保存します。
@@ -1086,8 +1081,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 
-<div id="outline-container-org0825223" class="outline-3">
-<h3 id="org0825223"><span class="section-number-3">4.2</span> MIDI Regionの変更</h3>
+<div id="outline-container-orgd5b5bde" class="outline-3">
+<h3 id="orgd5b5bde"><span class="section-number-3">4.2</span> MIDI Regionの変更</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 MIDIノートのベロシティをランダマイズするスクリプトです。
@@ -1182,8 +1177,8 @@ end end
 </p>
 </div>
 
-<div id="outline-container-org3c71c41" class="outline-4">
-<h4 id="org3c71c41"><span class="section-number-4">4.2.1</span> 利用クラス</h4>
+<div id="outline-container-orgefcbd8f" class="outline-4">
+<h4 id="orgefcbd8f"><span class="section-number-4">4.2.1</span> 利用クラス</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li><a href="http://manual.ardour.org/lua-scripting/class_reference/#ArdourUI:Editor">ArdourUI:Editor</a></li>
@@ -1202,8 +1197,8 @@ end end
 </div>
 </div>
 
-<div id="outline-container-orga88ba6e" class="outline-4">
-<h4 id="orga88ba6e"><span class="section-number-4">4.2.2</span> 参考スクリプト</h4>
+<div id="outline-container-org5876f86" class="outline-4">
+<h4 id="org5876f86"><span class="section-number-4">4.2.2</span> 参考スクリプト</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li><a href="https://github.com/Ardour/ardour/blob/master/scripts/_dump_midiregion.lua">ardour/_dump_midiregion.lua at master · Ardour/ardour · GitHub</a></li>
@@ -1228,8 +1223,8 @@ end end
 </div>
 </div>
 
-<div id="outline-container-orgd90ee29" class="outline-4">
-<h4 id="orgd90ee29"><span class="section-number-4">4.2.3</span> 参考サイト</h4>
+<div id="outline-container-org91376cc" class="outline-4">
+<h4 id="org91376cc"><span class="section-number-4">4.2.3</span> 参考サイト</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <ul class="org-ul">
 <li><a href="http://www.lua.org/pil/contents.html">Programming in Lua (first edition)</a></li>
